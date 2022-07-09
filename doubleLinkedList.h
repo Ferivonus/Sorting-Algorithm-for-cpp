@@ -97,6 +97,24 @@ public:
             newNode = newNode->next;
         }
     }
+    void Remove(Node<T> *node) {
+        if (node == head) {
+            head = node->next;
+            if (head != NULL) {
+                head->prev = NULL;
+            }
+        } else if (node == tail) {
+            tail = node->prev;
+            if (tail != NULL) {
+                tail->next = NULL;
+            }
+        } else {
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+        }
+        delete node;
+        size--;
+    }
 
     int forwardIndex(T data) {
         Node<T> *newNode = head;
@@ -138,6 +156,7 @@ public:
         head =tail =NULL;
         size = 0;
     }
+
     int getSize() {
         return size;
     }
