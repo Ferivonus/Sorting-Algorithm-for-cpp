@@ -17,12 +17,7 @@ int main(){
     list.print_ascending();
     cout <<"Print all values in descending order" << endl;
     list.print_descending();
-    /*
-    Forward Index of 30 is: 2
-    Backward Index of 30 is: 4
-    */
-    //cout <<"forward index of 30 is: " << dll.forwardIndex(30) << endl;
-    //cout <<"backward index of 30 is: " << dll.backwardIndex(30) << endl;
+    
     cout <<"forward index of 30 is: " << list.forwardIndex(30) << endl;
     cout <<"backward index of 30 is: " << list.backwardIndex(30) << endl;
     cout <<"SortedLinkedList includes " << list.getSize() << " number of nodes" << endl;
