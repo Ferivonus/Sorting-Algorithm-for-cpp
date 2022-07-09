@@ -146,10 +146,3 @@ public:
 
 #endif /* DoubleLinkedList_H_ */
 
-
-
-
-
-
-
-
