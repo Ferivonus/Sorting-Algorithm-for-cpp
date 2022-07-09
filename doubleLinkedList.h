@@ -5,16 +5,18 @@
 #include <cassert>
 
 namespace std {
-
+template <class T>
 struct Node {
-    int data;
-    Node *next;
-    Node *prev;
+    T data;
+    Node<T> *next;
+    Node<T> *prev;
 };
+
 //double linked list
+template <class T>
 class DoubleLinkedList {
-    Node *head;
-    Node *tail;
+    Node<T> *head;
+    Node<T> *tail;
     int size;
 public:
     DoubleLinkedList() {
@@ -24,7 +26,7 @@ public:
     }
     //sorted list shorted by data
     void add(int data) {
-        Node *newNode = new Node;
+        Node<T> *newNode = new Node<T>;
         newNode->data = data;
         newNode->next = NULL;
         newNode->prev = NULL;
@@ -32,7 +34,7 @@ public:
             head = newNode;
             tail = newNode;
         } else {
-            Node *AddedModes = head;
+            Node<T> *AddedModes = head;
             while (AddedModes->next != NULL && AddedModes->data < data) {
                 AddedModes = AddedModes->next;
             }
@@ -53,8 +55,8 @@ public:
         size++;
     }
     
-    void print() {
-        Node *newNode = head;
+    void print_ascending() {
+        Node<T> *newNode = head;
         while (newNode != NULL) {
             cout << newNode->data << " ";
             newNode = newNode->next;
@@ -62,8 +64,8 @@ public:
         cout << endl;
     }
     //reverse print list
-    void reversePrint() {
-        Node *newNode = tail;
+    void print_descending() {
+        Node<T> *newNode = tail;
         while (newNode != NULL) {
             cout << newNode->data << " ";
             newNode = newNode->prev;
@@ -71,7 +73,7 @@ public:
         cout << endl;
     }
     void deleteNode(int data) {
-        Node *newNode = head;
+        Node<T> *newNode = head;
         while (newNode != NULL) {
             if (newNode->data == data) {
                 if (newNode == head) {
@@ -95,11 +97,41 @@ public:
             newNode = newNode->next;
         }
     }
+
+    int forwardIndex(int data) {
+        Node<T> *newNode = head;
+        int index = 0;
+        while (newNode != NULL) {
+            if (newNode->data == data) {
+                index ++; // to fix the bug of forward index according to the school's example
+                return index;
+            }
+            newNode = newNode->next;
+            index++;
+        }
+        cout <<"I could't find the data inside of double linked list" << endl;
+        return -1; // I think there should be a return value of -1 if the data is not found in the list
+    }
+
+    int backwardIndex(int data) {
+        Node<T> *newNode = tail;
+        int index = 0;
+        while (newNode != NULL) {
+            if (newNode->data == data) {
+                index ++; // to fix the bug of backward index according to the school's example
+                return index;
+            }
+            newNode = newNode->prev;
+            index++;
+        }
+        cout <<"I could't find the data inside of double linked list" << endl;
+        return -1; // I think there should be a return value of -1 if the data is not found in the list
+    }
     void deleteList() {
-        Node *newNod = head;
+        Node<T> *newNod = head;
         while (newNod != NULL) //while temp is not null when there are nodes in the list
         {
-            Node *Delater_Node = newNod;
+            Node<T> *Delater_Node = newNod;
             newNod = newNod->next;
             delete Delater_Node;
         }
