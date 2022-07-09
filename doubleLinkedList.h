@@ -25,7 +25,7 @@ public:
         size = 0;
     }
     //sorted list shorted by data
-    void add(int data) {
+    void add(T data) {
         Node<T> *newNode = new Node<T>;
         newNode->data = data;
         newNode->next = NULL;
@@ -72,7 +72,7 @@ public:
         }
         cout << endl;
     }
-    void deleteNode(int data) {
+    void deleteNode(T data) {
         Node<T> *newNode = head;
         while (newNode != NULL) {
             if (newNode->data == data) {
@@ -98,7 +98,7 @@ public:
         }
     }
 
-    int forwardIndex(int data) {
+    int forwardIndex(T data) {
         Node<T> *newNode = head;
         int index = 0;
         while (newNode != NULL) {
@@ -113,7 +113,7 @@ public:
         return -1; // I think there should be a return value of -1 if the data is not found in the list
     }
 
-    int backwardIndex(int data) {
+    int backwardIndex(T data) {
         Node<T> *newNode = tail;
         int index = 0;
         while (newNode != NULL) {
