@@ -75,6 +75,15 @@ public:
         }
         cout << endl;
     }
+    //reverse print list
+    void reversePrint() {
+        Node *newNode = tail;
+        while (newNode != NULL) {
+            cout << newNode->data << " ";
+            newNode = newNode->prev;
+        }
+        cout << endl;
+    }
     void deleteNode(int data) {
         Node *newNode = head;
         while (newNode != NULL) {

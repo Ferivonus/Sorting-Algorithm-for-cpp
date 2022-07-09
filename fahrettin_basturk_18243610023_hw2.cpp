@@ -10,6 +10,10 @@ int main(){
     dll.insert(5);
     dll.insert(7);
     dll.insert(2);
+    dll.insert(3);
+    dll.insert(4);
+    dll.insert(6);
     dll.print();
+    dll.reversePrint();
     return 0;
 }
