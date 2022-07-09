@@ -23,7 +23,7 @@ public:
         size = 0;
     }
     //sorted list shorted by data
-    void insert(int data) {
+    void add(int data) {
         Node *newNode = new Node;
         newNode->data = data;
         newNode->next = NULL;
@@ -52,21 +52,7 @@ public:
         }
         size++;
     }
-    void add(int data) {
-        Node *newNode = new Node();
-        newNode->data = data;
-        newNode->next = NULL;
-        newNode->prev = NULL;
-        if (head == NULL) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
-        }
-        size++;
-    }
+    
     void print() {
         Node *newNode = head;
         while (newNode != NULL) {
