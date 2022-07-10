@@ -156,4 +156,3 @@ public:
 } /* namespace std */
 
 #endif /* DoubleLinkedList_H_ */
-
