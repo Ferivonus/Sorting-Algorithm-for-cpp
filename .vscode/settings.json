@@ -3,6 +3,7 @@
         "*.cpp": "cpp",
         "xstring": "cpp",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "xmemory": "cpp"
     }
 }

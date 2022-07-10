@@ -5,7 +5,7 @@
 #include <cassert>
 
 namespace std {
-template <class T>
+template <typename T>
 struct Node {
     T data;
     Node<T> *next;
@@ -72,49 +72,8 @@ public:
         }
         cout << endl;
     }
-    void deleteNode(T data) {
-        Node<T> *newNode = head;
-        while (newNode != NULL) {
-            if (newNode->data == data) {
-                if (newNode == head) {
-                    head = newNode->next;
-                    if (head != NULL) {
-                        head->prev = NULL;
-                    }
-                } else if (newNode == tail) {
-                    tail = newNode->prev;
-                    if (tail != NULL) {
-                        tail->next = NULL;
-                    }
-                } else {
-                    newNode->prev->next = newNode->next;
-                    newNode->next->prev = newNode->prev;
-                }
-                delete newNode;
-                size--;
-                return; // to exit the loop after deleting the node
-            }
-            newNode = newNode->next;
-        }
-    }
-    void Remove(Node<T> *node) {
-        if (node == head) {
-            head = node->next;
-            if (head != NULL) {
-                head->prev = NULL;
-            }
-        } else if (node == tail) {
-            tail = node->prev;
-            if (tail != NULL) {
-                tail->next = NULL;
-            }
-        } else {
-            node->prev->next = node->next;
-            node->next->prev = node->prev;
-        }
-        delete node;
-        size--;
-    }
+
+    int Remove(T data);
 
     int forwardIndex(T data) {
         Node<T> *newNode = head;
@@ -145,7 +104,7 @@ public:
         cout <<"I could't find the data inside of double linked list" << endl;
         return -1; // I think there should be a return value of -1 if the data is not found in the list
     }
-    void deleteList() {
+    void Clear() {
         Node<T> *newNod = head;
         while (newNod != NULL) //while temp is not null when there are nodes in the list
         {
@@ -160,7 +119,40 @@ public:
     int getSize() {
         return size;
     }
-};
+
+    ~DoubleLinkedList() {
+        Clear();
+    }
+    protected:
+    void removeAccordingToNode(Node<T> *node);
+
+};  
+    template <class T>
+    int DoubleLinkedList<T>::Remove(T data) {     // Returns 0 upon successful deletion, if there is not any node with the given data, returns -1 and use the remove function to delete the node
+        Node<T> *newNode = head;
+        while (newNode != NULL) {
+            if (newNode->data == data) {
+                removeAccordingToNode(newNode);
+                return 0;
+            }
+            newNode = newNode->next;
+        }
+        return -1;
+    }
+    template <class T>
+    void DoubleLinkedList<T>::removeAccordingToNode(Node<T> *node) {
+        if (node == head) { // if the node is the head, then we need to change the head to the next node
+            head = node->next;
+        } else if (node == tail) { // if the node is the tail, we need to change the tail to the previous node
+            tail = node->prev;
+        } else { // if the node is in the middle of the list
+            node->prev->next = node->next;
+            node->next->prev = node->prev;
+        }
+        delete node;
+        size--;
+    }
+
 } /* namespace std */
 
 #endif /* DoubleLinkedList_H_ */
