@@ -1,3 +1,11 @@
+//author: Fahrettin Basturk
+//date: 10/07/2022
+//description: This program is a code that making lists and sorting them, and there are also some of functions like ascending and descending print with delate and add functions.
+//version: Possible Final.
+//language: cpp
+//path: basturk_fahrettin_hw2.cpp
+
+
 #include <iostream>
 #include "doubleLinkedList.h"
 
@@ -14,15 +22,14 @@ int main(){
     list.add(30);
 
     
-    cout <<"created shorted list is:" <<endl;
+    cout <<"Created SortedLinkedList is:" <<endl;
     cout <<"Print all values in ascending order" << endl;
     list.print_ascending();
     cout <<"Print all values in descending order" << endl;
     list.print_descending();
     
     
-    cout <<"forward index of 30 is: " << list.forwardIndex(30) << endl;
-    cout <<"backward index of 30 is: " << list.backwardIndex(30) << endl;
+    list.index(30);
     cout <<"SortedLinkedList includes " << list.getSize() << " number of nodes" << endl;
 
     /*

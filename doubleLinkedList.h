@@ -5,6 +5,8 @@
 #include <cassert>
 
 namespace std {
+
+//double linked list template node struct
 template <typename T>
 struct Node {
     T data;
@@ -12,7 +14,7 @@ struct Node {
     Node<T> *prev;
 };
 
-//double linked list
+//double linked list template class
 template <class T>
 class DoubleLinkedList {
     Node<T> *head;
@@ -26,7 +28,7 @@ public:
     }
     //sorted list shorted by data
     void add(T data) {
-        Node<T> *newNode = new Node<T>;
+        Node<T> *newNode = new Node<T>; //if there is no data in the list, create a new node
         newNode->data = data;
         newNode->next = NULL;
         newNode->prev = NULL;
@@ -34,15 +36,15 @@ public:
             head = newNode;
             tail = newNode;
         } else {
-            Node<T> *AddedModes = head;
-            while (AddedModes->next != NULL && AddedModes->data < data) {
+            Node<T> *AddedModes = head; //AddedModes is the node that is added to the list
+            while (AddedModes->next != NULL && AddedModes->data < data) { //find the place to add the node
                 AddedModes = AddedModes->next;
             }
-            if (AddedModes->data < data) {
+            if (AddedModes->data < data) { //if the data is smaller than the first node
                 AddedModes->next = newNode;
                 newNode->prev = AddedModes;
                 tail = newNode;
-            } else {
+            } else { //if the data is bigger than the data of the node that is added to the list
                 newNode->next = AddedModes;
                 newNode->prev = AddedModes->prev;
                 AddedModes->prev->next = newNode;
@@ -54,27 +56,58 @@ public:
         }
         size++;
     }
-    
-    void print_ascending() {
-        Node<T> *newNode = head;
-        while (newNode != NULL) {
-            cout << newNode->data << " ";
-            newNode = newNode->next;
-        }
-        cout << endl;
-    }
-    //reverse print list
-    void print_descending() {
-        Node<T> *newNode = tail;
-        while (newNode != NULL) {
-            cout << newNode->data << " ";
-            newNode = newNode->prev;
+
+    //print all values in ascending order
+    void print_ascending() { 
+        Node<T> *newNode = head; //first node is the list
+        while (newNode != NULL) { 
+            cout << newNode->data << " "; //print the data of the node
+            newNode = newNode->next; //move to the next node
         }
         cout << endl;
     }
 
+    //print all values in descending order
+    void print_descending() {   
+        Node<T> *newNode = tail; //last node of the list
+        while (newNode != NULL) { 
+            cout << newNode->data << " "; //print the data of the node
+            newNode = newNode->prev; //move to the previous node
+        }
+        cout << endl;
+    }
+    // I just want to write that code in that way, but I don't know why.
     int Remove(T data);
 
+    //find the index of the data
+    void index(T data)
+    {
+        Node<T> *newNode = head;
+        if (Find(data)) {
+            cout <<"backward index of " << data <<" is: " << forwardIndex(data) <<"." << endl;
+            cout <<"backward index of " << data <<" is: " << backwardIndex(data) <<"." << endl;
+        } 
+        else {
+            cout << data  << " does not include of the linked list." << endl;
+        }  
+    }
+
+    /*
+    earches a key in the list and returns a pointer
+    to the list node that contains the key
+    */
+    Node<T>* Find(T data) {
+        Node<T> *newNode = head;
+        while (newNode != NULL) { //find the node that contains the data
+            if (newNode->data == data) { //if the data is found
+                return newNode; //return the node
+            }
+            newNode = newNode->next;
+        }
+        return NULL;
+    }
+
+    //find the forward index of the data
     int forwardIndex(T data) {
         Node<T> *newNode = head;
         int index = 0;
@@ -86,10 +119,11 @@ public:
             newNode = newNode->next;
             index++;
         }
-        cout <<"I could't find the data inside of double linked list" << endl;
+        cout <<"I could't find the data inside of the list" << endl;
         return -1; // I think there should be a return value of -1 if the data is not found in the list
     }
 
+    //find the backward index of the data
     int backwardIndex(T data) {
         Node<T> *newNode = tail;
         int index = 0;
@@ -101,30 +135,65 @@ public:
             newNode = newNode->prev;
             index++;
         }
-        cout <<"I could't find the data inside of double linked list" << endl;
+        cout <<"I could't find the data inside of the list" << endl;
         return -1; // I think there should be a return value of -1 if the data is not found in the list
     }
+    //remove all the nodes in the list
     void Clear() {
-        Node<T> *newNod = head;
+        Node<T> *newNod = head; // consider the head node as the first node to be removed
         while (newNod != NULL) //while temp is not null when there are nodes in the list
         {
-            Node<T> *Delater_Node = newNod;
-            newNod = newNod->next;
-            delete Delater_Node;
+            Node<T> *Delater_Node = newNod; //Delater_Node is the node that is removed from the list
+            newNod = newNod->next; // move the pointer to the next node
+            delete Delater_Node; //delete the node
         }
         head =tail =NULL;
         size = 0;
     }
 
+    //return the size of the list
     int getSize() {
         return size;
     }
-
+    //remove all the nodes in the list
     ~DoubleLinkedList() {
         Clear();
     }
     protected:
+
     void removeAccordingToNode(Node<T> *node);
+    //find the forward index of the data
+    int forwardIndex(T data) {
+        Node<T> *newNode = head;
+        int index = 0; // creating a variable to store the index of the data
+        while (newNode != NULL) { //find the node that contains the data
+            if (newNode->data == data) {
+                index ++; // to fix the bug of forward index according to the school's example
+                return index;
+            }
+            newNode = newNode->next;
+            index++;
+        }
+        cout <<"I could't find the data inside of the list" << endl;
+        return -1; // I think there should be a return value of -1 if the data is not found in the list
+    }
+
+    //find the backward index of the data
+    int backwardIndex(T data) {
+        Node<T> *newNode = tail;
+        int index = 0; // creating a variable to store the index of the data
+        while (newNode != NULL) { //find the node that contains the data
+            if (newNode->data == data) {
+                index ++; // to fix the bug of backward index according to the school's example
+                return index;
+            }
+            newNode = newNode->prev; // move the pointer to the previous node
+            index++;
+        }
+        cout <<"I could't find the data inside of the list" << endl;
+        return -1; // I think there should be a return value of -1 if the data is not found in the list
+    }
+
 
 };  
     template <class T>
@@ -135,7 +204,7 @@ public:
                 removeAccordingToNode(newNode);
                 return 0;
             }
-            newNode = newNode->next;
+            newNode = newNode->next; // move the pointer to the next node
         }
         return -1;
     }
@@ -143,9 +212,11 @@ public:
     void DoubleLinkedList<T>::removeAccordingToNode(Node<T> *node) {
         if (node == head) { // if the node is the head, then we need to change the head to the next node
             head = node->next;
-        } else if (node == tail) { // if the node is the tail, we need to change the tail to the previous node
+        } 
+        else if (node == tail) { // if the node is the tail, we need to change the tail to the previous node
             tail = node->prev;
-        } else { // if the node is in the middle of the list
+        } 
+        else { // if the node is in the middle of the list
             node->prev->next = node->next;
             node->next->prev = node->prev;
         }
