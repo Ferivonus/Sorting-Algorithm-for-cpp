@@ -1,3 +1,10 @@
+//author: Fahrettin Basturk
+//date: 10/07/2022
+//description: Linked List is a data structure that is used to store data in a linear fashion. Which could be useful for another projects.
+//version: Possible Final.
+//language: cpp
+//path: basturk_fahrettin_hw2.cpp
+
 #ifndef DoubleLinkedlist_H_
 #define DoubleLinkedlist_H_
 
@@ -83,7 +90,7 @@ public:
     void index(T data)
     {
         Node<T> *newNode = head;
-        if (Find(data)) {
+        if (Find(data)) { //if the data is in the list
             cout <<"backward index of " << data <<" is: " << forwardIndex(data) <<"." << endl;
             cout <<"backward index of " << data <<" is: " << backwardIndex(data) <<"." << endl;
         } 
@@ -98,46 +105,15 @@ public:
     */
     Node<T>* Find(T data) {
         Node<T> *newNode = head;
-        while (newNode != NULL) { //find the node that contains the data
-            if (newNode->data == data) { //if the data is found
-                return newNode; //return the node
+        while (newNode != NULL) { 
+            if (newNode->data == data) { 
+                return newNode; 
             }
             newNode = newNode->next;
         }
         return NULL;
     }
 
-    //find the forward index of the data
-    int forwardIndex(T data) {
-        Node<T> *newNode = head;
-        int index = 0;
-        while (newNode != NULL) {
-            if (newNode->data == data) {
-                index ++; // to fix the bug of forward index according to the school's example
-                return index;
-            }
-            newNode = newNode->next;
-            index++;
-        }
-        cout <<"I could't find the data inside of the list" << endl;
-        return -1; // I think there should be a return value of -1 if the data is not found in the list
-    }
-
-    //find the backward index of the data
-    int backwardIndex(T data) {
-        Node<T> *newNode = tail;
-        int index = 0;
-        while (newNode != NULL) {
-            if (newNode->data == data) {
-                index ++; // to fix the bug of backward index according to the school's example
-                return index;
-            }
-            newNode = newNode->prev;
-            index++;
-        }
-        cout <<"I could't find the data inside of the list" << endl;
-        return -1; // I think there should be a return value of -1 if the data is not found in the list
-    }
     //remove all the nodes in the list
     void Clear() {
         Node<T> *newNod = head; // consider the head node as the first node to be removed
@@ -157,12 +133,13 @@ public:
     }
     //remove all the nodes in the list
     ~DoubleLinkedList() {
-        Clear();
+        Clear(); //remove all the nodes in the list with using a function.
     }
     protected:
 
     void removeAccordingToNode(Node<T> *node);
     //find the forward index of the data
+
     int forwardIndex(T data) {
         Node<T> *newNode = head;
         int index = 0; // creating a variable to store the index of the data

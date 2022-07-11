@@ -13,22 +13,23 @@ using namespace  std;
 
 
 int main(){
-    DoubleLinkedList<int> list;
+    DoubleLinkedList<int> list; 
 
+    // add some info
     list.add(20);
     list.add(90);
     list.add(70);
     list.add(60);
     list.add(30);
 
-    
+    // print the list
     cout <<"Created SortedLinkedList is:" <<endl;
     cout <<"Print all values in ascending order" << endl;
     list.print_ascending();
     cout <<"Print all values in descending order" << endl;
     list.print_descending();
     
-    
+    // show forward and backward index of the data and showing how much data is in the list.
     list.index(30);
     cout <<"SortedLinkedList includes " << list.getSize() << " number of nodes" << endl;
 
