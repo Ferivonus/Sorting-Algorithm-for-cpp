@@ -3,7 +3,7 @@
 //description: Linked List is a data structure that is used to store data in a linear fashion. Which could be useful for another projects.
 //version: Possible Final.
 //language: cpp
-//path: basturk_fahrettin_hw2.cpp
+//path: doubleLinkedList.h
 
 #ifndef DoubleLinkedlist_H_
 #define DoubleLinkedlist_H_
