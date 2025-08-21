@@ -1,4 +1,4 @@
-//author: Fahrettin Basturk
+//author: ferivonus
 //date: 10/07/2022
 //description: Linked List is a data structure that is used to store data in a linear fashion. Which could be useful for another projects.
 //version: Possible Final.
