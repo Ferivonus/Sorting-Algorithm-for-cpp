@@ -1,9 +1,9 @@
-//author: Fahrettin Basturk
+//author: ferivonus 
 //date: 10/07/2022
 //description: This program is a code that making lists and sorting them, and there are also some of functions like ascending and descending print with delate and add functions.
 //version: Possible Final.
 //language: cpp
-//path: basturk_fahrettin_hw2.cpp
+//path: ferivonus_hw2.cpp
 
 
 #include <iostream>
